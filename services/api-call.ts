@@ -1,9 +1,9 @@
 import got, { OptionsOfJSONResponseBody } from 'got';
 // import config from '../config';
 
-const options: OptionsOfJSONResponseBody = {
-  // responseType: 'json',
-  // resolveBodyOnly: true,
+const options: any = {
+  responseType: 'json',
+  resolveBodyOnly: true,
   retry: {
     limit: 0,
   },

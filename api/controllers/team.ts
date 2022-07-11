@@ -7,7 +7,7 @@ const createNewMember = async (req: Request, res: Response, next: any) => {
   try {
     const member = req.body;
     const url = `${config.io.host}${config.io.team.new}`;
-    const resPayload = post({
+    const resPayload = await post({
       url,
       data: member,
     });
@@ -32,16 +32,17 @@ const getAllMembers = async (req: Request, res: Response, next: any) => {
 };
 
 const getMemberById = async (req: Request, res: Response, next: any) => {
-  // try {
-  //   const { userid } = req.params;
-  //   const sQuery = `SELECT * FROM team WHERE userid='${userid}'`;
-  //   const result = await db.query(sQuery, null);
-  //   const resPayload = createSuccess(result);
-  //   res.send(resPayload);
-  // } catch (error) {
-  //   const resPayload = createFailure(error);
-  //   res.status(500).send(resPayload);
-  // }
+  try {
+    const { userid } = req.params;
+    const url = `${config.io.host}${config.io.team.getMember}${userid}`;
+    const resPayload = await get({
+      url,
+    });
+    res.send(resPayload);
+  } catch (error) {
+    const resPayload = createFailure(error);
+    res.status(500).send(resPayload);
+  }
 };
 
 export { createNewMember, getAllMembers, getMemberById };
