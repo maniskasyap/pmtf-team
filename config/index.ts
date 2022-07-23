@@ -7,6 +7,7 @@ export default {
       new: env.IO_TEAM_NEW,
       getMemberAll: env.IO_TEAM_ALL,
       getMember: env.IO_TEAM_BY_ID,
+      getMemberByEmail: env.IO_TEAM_BY_EMAIL,
     },
   },
 };

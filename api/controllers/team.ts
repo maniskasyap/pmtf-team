@@ -45,4 +45,18 @@ const getMemberById = async (req: Request, res: Response, next: any) => {
   }
 };
 
-export { createNewMember, getAllMembers, getMemberById };
+const getMemberByEmail = async (req: Request, res: Response, next: any) => {
+  try {
+    const { userEmail } = req.params;
+    const url = `${config.io.host}${config.io.team.getMemberByEmail}${userEmail}`;
+    const resPayload = await get({
+      url,
+    });
+    res.send(resPayload);
+  } catch (error) {
+    const resPayload = createFailure(error);
+    res.status(500).send(resPayload);
+  }
+};
+
+export { createNewMember, getAllMembers, getMemberById, getMemberByEmail };
